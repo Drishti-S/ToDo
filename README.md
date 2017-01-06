@@ -1,5 +1,5 @@
 # ToDo App
-A task manager app that lets you create your To-do list for the different categories provided. It has been built on the PhoneGap platform and can be openend on desktop as well as mobile phones supporting PhoneGap.
+A task manager app that lets you create your To-do list for the different categories provided. It has been built on the PhoneGap platform and can be openend on desktop as well as mobile phones supporting PhoneGap. This project shall see additional functionalities in the future.
 
 ## How to:
 1.Click on the menu icon on the top right. 
