@@ -1,4 +1,5 @@
-# A Blank PhoneGap App
+# ToDo App
+A task manager app that lets you create your To-do list for the different categories provided. It has been built on the PhoneGap platform and shall see additional functionalities soon. 
 
 ## Usage
 
