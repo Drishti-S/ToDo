@@ -28,52 +28,8 @@
     font-size:18pt;
     height:50px;
     width:50%;
+    margin: 50px 50px 50px 50px;
   }
-
-
-  /* Dropdown Button */
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
 
    header{
     width:100%; 
@@ -116,10 +72,10 @@
 .menu ul {margin: 0; padding: 0; list-style-type: none; list-style-image: none;}
 .menu li {display: block;   padding:15px 0 15px 0; border-bottom:#1d1f20 1px solid;}
 .menu li:hover{display: block;    background:#181818; padding:15px 0 15px 0; border-bottom:#1d1f20 1px solid;}
-.menu ul li a { text-decoration:none;  margin: 0px; color:#fff;}
-.menu ul li a:hover {  color: #fff; text-decoration:none;}
+.menu ul li a { text-decoration:none;  margin: 0px; color:black;}
+.menu ul li a:hover {  color: black; text-decoration:none;}
 .menu a{text-decoration:none; color:white;}
-.menu a:hover{text-decoration:none; color:white;}
+.menu a:hover{text-decoration:none; color:black;}
 
 .glyphicon-home{
   color:white; 
@@ -144,6 +100,8 @@
 
   a:hover{
     text-decoration:none;
+    background-color: black;
+    color: black;
   }
 
   section, footer, nav{   /*header aside removed*/
@@ -162,6 +120,11 @@
     border-radius:0px;
   }
 
+  li a:hover {
+    background-color: #555;
+    color: white;
+}
+
   nav a{
     display:inline-block;
     padding: 18px 30px;
@@ -178,25 +141,20 @@
     transition:background-color 0.25s;
   }
 
-  nav a:first-child{
+ /* nav a:first-child{
     border-radius:0px 0 0 0px;
   }
 
   nav a:last-child{
     border-radius:0 0px 0px 0;
-  }
+  }*/
 
   nav.home .home,
   nav.office .office,
   nav.school .school,
   nav.other .other,
-  nav.addCategory .addCategory,
-  nav.deleteCategory .deleteCategory{
+  nav.addCategory .addCategory{
     background-color:#061A17;
-  }
-
-  nav.back .back{
-    background-color: #fff;
   }
 
   p{
@@ -215,12 +173,22 @@
     font-size:18px;
   }
 
+  .header{
+    font-family: fantasy;
+    font-weight: bold;
+    color: black;
+  }
+
 
   @media screen and (max-width: 768px) {
       .done123 {
         text-decoration: line-through;
       }
-
+ .header{
+    font-family: fantasy;
+    font-weight: bold;
+    color: black;
+  }
 
       *{
     margin:0;
@@ -228,10 +196,12 @@
   }
 
   .placeholder{
-    
+    font-size:18pt;
     height:50px;
     width:50%;
+     margin: 50px 50px 50px 50px;
   }
+
 
   .swiper-container {
         width: 100%;
@@ -262,6 +232,11 @@
     color: #fff;
     font-weight: bold;
     text-align:center;
+    /*background: url('http://img00.deviantart.net/c3fd/i/2016/080/2/9/blurry_background__with_textured_clouds_wallpaper__by_vactual-d9vwd5u.png');*/
+     background-size: 100%;
+     background-color: #E2DCDC;
+     background-image: url('https://cdn.pixabay.com/photo/2016/01/14/01/41/image-view-1139204_960_720.jpg');
+
   }
 
   a, a:visited {
@@ -336,9 +311,11 @@
     font-size:18px;
   }
 }
+
+
 </style>
 </head>
-<body>
+<body >
 
 <div id="main">
    <header>
@@ -348,39 +325,23 @@
     </header>
 
 
-    <div class="menu">
-<nav v-bind:class="active" v-on:click.prevent>
+<div class="menu">
+  <nav v-bind:class="active" v-on:click.prevent>
 
     <!-- When a link in the menu is clicked, we call the makeActive method, 
         defined in the JavaScript Vue instance. It will change the value of "active". -->
-        <ul>
-        <!-- <a href="asdj" v-for="items in item"></a>
-        <a href="#" class="home" v-on:click="makeActive('home')">Home</a>
-    <a href="#" class="office" v-on:click="makeActive('office')">Office</a>
-    <a href="#" class="school" v-on:click="makeActive('school')">School</a>
-    <a href="#" class="other" v-on:click="makeActive('other')">Other</a> -->
+        <ul>     
 
-    <a href="#" v-for="category in categories" v-on:click="makeActive(category.name, category.id)">{{ category.name }}</a>
-    <a href="#" class="addCategory" v-on:click="makeActiveAdd('add')">+ Add</a>
-    <!-- <a href="#" class="deleteCategory" v-onclick="" -->
-
-
-
-<!-- select v-model="selected">
-  <option v-for="option in options" v-bind:value="option.value">
-    {{ option.text }}
-  </option>
-</select>
-<span>Selected: {{ selected }}</span> -->
-
-<select v-model="Delete" v-on:change="deleteSelectedCategory()">
-  <option v-for="category in categories" v-bind:value="category.name">
-   <button v-on:click="deleteCategory(Delete)">{{ category.name }}</button>
-  </options>
-</select>
-<span style="color: white;">Delete</span>
-
-    </ul>
+              <a href="#" v-for="category in categories" v-on:click="makeActive(category.name, category.id)">{{ category.name }}</a>
+              <a href="#" class="addCategory" v-on:click="makeActiveAdd('add')">+ Add</a>
+               <a class="addCategory">Delete</a>
+              <select v-if="categories[active_ID]" v-model="Delete" v-on:change="deleteSelectedCategory()">
+                <option v-for="category in categories" v-bind:value="category.name">
+                 {{ category.name }}
+                </options>
+              </select>
+             
+        </ul>
   </nav>
 </div>
 
@@ -388,7 +349,7 @@
 
 <div class="header">
 
- <br><br><h1 style="font-family: fantasy;">Task Manager</h1>
+ <br><br><h1>Task Manager</h1>
 </div>
 
 <template v-if="active === 'add'">
@@ -398,12 +359,11 @@
 <p>{{ addedtask }}</p>
 
   <section class="panel">
-<br><br>
-<input type="text" class="placeholder" placeholder="Task" autofocus class="text-input" v-model="newTask" v-on:keyup.enter="addTask(active_ID)">
+    <input type="text" class="placeholder" placeholder="Task" autofocus class="text-input" v-model="newTask" :hidden="active==='add'" v-on:keyup.enter="addTask(active_ID)">
 </section>
 
 
-  <ul v-if="categories[active_ID]">
+  <ul  v-if="categories[active_ID]"> 
     <br><li :class="{ 'done123' : task.done }" v-for="task in categories[active_ID].tasks" @click="task.done = !task.done">
       {{ task.text }}
     </li>
@@ -440,7 +400,7 @@ var demo = new Vue({
     newTask: "",
     addedtask: "",
     active_ID: 0,
-    last_ID: 0,
+    last_ID: 1,
     Delete: "",
     taskList: {
           home: [], 
@@ -463,8 +423,9 @@ var demo = new Vue({
       // When a model is changed, the view will be automatically updated.
       this.active = item;
       this.active_ID = id; 
-      this.last_ID= id;   
+      // this.last_ID= id;   
       console.log(this.active_ID)
+
       
     },
 
@@ -482,14 +443,7 @@ var demo = new Vue({
 
       //if task is not an empty string
       if (task) {
-        //Push an object containing the task to the taskList array
-
-          // this.taskList[active].push({
-          //       text: task,
-          //       done: false
-          //  });
-
-          this.categories[active_ID].tasks.push({
+                this.categories[active_ID].tasks.push({
                 text: task,
                 done: false
            });  
@@ -504,29 +458,31 @@ var demo = new Vue({
        
        if(addedtask){
                
-         this.categories.push({
-          id: 2,
+         this.categories.push({ 
+          id: this.categories.length,
           name: addedtask,
           tasks: []
          });
-         this.addedtask="";
          this.active=addedtask;
-         this.active_ID=2;
-         this.last_ID++;
+         this.addedtask="";
+         this.active_ID=this.last_ID=this.categories.length - 1;
+         
         }
       },
 
 
     deleteSelectedCategory: function(){      
-      var index = -1;
+      var index = -1; var store = -1;
       for(var i=0; i<this.categories.length; i++){
         if(this.categories[i].name==this.Delete)
           index= i
+        store=i
+
         }
       if (index > -1) {
         this.categories.splice(index, 1);
       }
-      makeActive(this.last_ID);
+      this.active_ID=this.last_ID=this.categories.length-1;
     },
 
     alert123: function(Delete){
