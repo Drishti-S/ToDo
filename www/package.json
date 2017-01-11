@@ -1,0 +1,20 @@
+{
+  "name": "ToDo_Final",
+  "version": "1.0.0",
+  "description": "A task manager app that lets you create your To-do list for the different categories provided. It has been built on the PhoneGap platform and can be openend on desktop as well as mobile phones supporting PhoneGap. This project shall see additional functionalities in the future.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drishti-S/ToDo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Drishti-S/ToDo/issues"
+  },
+  "homepage": "https://github.com/Drishti-S/ToDo#readme"
+}

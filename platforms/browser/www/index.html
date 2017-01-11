@@ -4,6 +4,7 @@
   <title>ToDo</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.0.3/css/swiper.css">
   <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
@@ -11,247 +12,372 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
   
   <style>
-	   
+     
 
-  	.done123 {
-	      text-decoration: line-through;
-	    }
+    .done123 {
+        text-decoration: line-through;
+      }
 
 
-	    *{
-		margin:0;
-		padding:0;
-	}
+      *{
+    margin:0;
+    padding:0;
+  }
 
-	.placeholder{
-		font-size:18pt;
-		height:50px;
-		width:50%;
-	}
+  .placeholder{
+    font-size:18pt;
+    height:50px;
+    width:50%;
+    margin: 50px 50px 50px 50px;
+  }
 
-	body{
-		font:15px/1.3 'Open Sans', sans-serif;
-		color: #5e5b64;
-		text-align:center;
-	}
+   header{
+    width:100%; 
+    background:#1d1f20; 
+    height:60px; 
+    line-height:60px;
+  }
+  .hamburger{
+  background:none;
+  position:absolute;
+  top:0;
+  right:0;
+  line-height:45px;
+  padding:5px 15px 0px 15px;
+  color:#fff;
+  border:0;
+  font-size:1.4em;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+ 
+}
+.cross{
+  background:none;
+  position:absolute;
+  top:0px;
+  right:0;
+  padding:13px 15px 0px 15px;
+  color:#fff;
+  border:0;
+  font-size:3em;
+  line-height:65px;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+  z-index:1000000
+  
+}
+.menu{; font-weight:bold; font-size:0.8em; width:100%; background:#131313;  position:absolute; text-align:center;}
+.menu ul {margin: 0; padding: 0; list-style-type: none; list-style-image: none;}
+.menu li {display: block;   padding:15px 0 15px 0; border-bottom:#1d1f20 1px solid;}
+.menu li:hover{display: block;    background:#181818; padding:15px 0 15px 0; border-bottom:#1d1f20 1px solid;}
+.menu ul li a { text-decoration:none;  margin: 0px; color:black;}
+.menu ul li a:hover {  color: black; text-decoration:none;}
+.menu a{text-decoration:none; color:white;}
+.menu a:hover{text-decoration:none; color:black;}
 
-	a, a:visited {
-		outline:none;
-		color:#389dc1;
-	}
+.glyphicon-home{
+  color:white; 
+  font-size:1.5em; 
+  margin-top:5px; 
+  margin:0 auto;
+}
 
-	a:hover{
-		text-decoration:none;
-	}
+  body{
+    font:22px/1.3 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #fff
+    color: #5e5b64;
+    text-align:center;
+    background-image: url('blurry_background__with_textured_clouds_wallpaper__by_vactual-d9vwd5u.png');
+    background-size: 100%;
+  }
 
-	section, footer, header, aside, nav{
-		display: block;
-	}
+  a, a:visited {
+    outline:none;
+    color:#389dc1;
+  }
 
-	/*-------------------------
-		The menu
-	--------------------------*/
+  a:hover{
+    text-decoration:none;
+    background-color: black;
+    color: black;
+  }
 
-	nav{
-		display:inline-block;
-		margin:12px;
-		background-color:#137363;
-		box-shadow:0 1px 1px #ccc;
-		border-radius:0px;
-	}
+  section, footer, nav{   /*header aside removed*/
+    display: block;
+  }
 
-	nav a{
-		display:inline-block;
-		padding: 18px 30px;
-		color:#fff !important;
-		font-weight:bold;
-		font-size:16px;
-		text-decoration:none !important;
-		line-height:1;
-		text-transform: uppercase;
-		background-color:transparent;
+  /*-------------------------
+    The menu
+  --------------------------*/
 
-		-webkit-transition:background-color 0.25s;
-		-moz-transition:background-color 0.25s;
-		transition:background-color 0.25s;
-	}
+  nav{
+    display:inline-block;
+    margin:12px;
+    background-color:#137363;
+    box-shadow:0 1px 1px #ccc;
+    border-radius:0px;
+  }
 
-	nav a:first-child{
-		border-radius:0px 0 0 0px;
-	}
+  li a:hover {
+    background-color: #555;
+    color: white;
+}
 
-	nav a:last-child{
-		border-radius:0 0px 0px 0;
-	}
+  nav a{
+    display:inline-block;
+    padding: 18px 30px;
+    color:#fff !important;
+    font-weight:bold;
+    font-size:16px;
+    text-decoration:none !important;
+    line-height:1;
+    text-transform: uppercase;
+    background-color:transparent;
 
-	nav.home .home,
-	nav.office .office,
-	nav.school .school,
-	nav.other .other{
-		background-color:#061A17;
-	}
+    -webkit-transition:background-color 0.25s;
+    -moz-transition:background-color 0.25s;
+    transition:background-color 0.25s;
+  }
 
-	p{
-		font-size:22px;
-		font-weight:bold;
-		color:#fff;
-	}
+ /* nav a:first-child{
+    border-radius:0px 0 0 0px;
+  }
 
-	p b{
-		color:#ffffff;
-		display:inline-block;
-		padding:5px 10px;
-		background-color:#c4d7e0;
-		border-radius:2px;
-		text-transform:uppercase;
-		font-size:18px;
-	}
+  nav a:last-child{
+    border-radius:0 0px 0px 0;
+  }*/
+
+  nav.home .home,
+  nav.office .office,
+  nav.school .school,
+  nav.other .other,
+  nav.addCategory .addCategory{
+    background-color:#061A17;
+  }
+
+  p{
+    font-size:22px;
+    font-weight:bold;
+    color:#fff;
+  }
+
+  p b{
+    color:#ffffff;
+    display:inline-block;
+    padding:5px 10px;
+    background-color:#c4d7e0;
+    border-radius:2px;
+    text-transform:uppercase;
+    font-size:18px;
+  }
+
+  .header{
+    font-family: fantasy;
+    font-weight: bold;
+    color: black;
+  }
 
 
   @media screen and (max-width: 768px) {
-	    .done123 {
-	      text-decoration: line-through;
-	    }
+      .done123 {
+        text-decoration: line-through;
+      }
+ .header{
+    font-family: fantasy;
+    font-weight: bold;
+    color: black;
+  }
+
+      *{
+    margin:0;
+    padding:0;
+  }
+
+  .placeholder{
+    font-size:18pt;
+    height:50px;
+    width:50%;
+     margin: 50px 50px 50px 50px;
+  }
 
 
-	    *{
-		margin:0;
-		padding:0;
-	}
+  .swiper-container {
+        width: 100%;
+        height: 100%;
+     }
 
-	.placeholder{
-		
-		height:50px;
-		width:50%;
-	}
+     .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
 
-	body{
-		font:15px/1.3 'Open Sans', sans-serif;
-		color: #5e5b64;
-		text-align:center;
-	}
+  body{
+    font:22px/1.3 'Open Sans', sans-serif;
+    color: #fff;
+    font-weight: bold;
+    text-align:center;
+    /*background: url('http://img00.deviantart.net/c3fd/i/2016/080/2/9/blurry_background__with_textured_clouds_wallpaper__by_vactual-d9vwd5u.png');*/
+     background-size: 100%;
+     background-color: #E2DCDC;
+     /*background-image: url('https://cdn.pixabay.com/photo/2016/01/14/01/41/image-view-1139204_960_720.jpg');*/
 
-	a, a:visited {
-		outline:none;
-		color:#389dc1;
-	}
+  }
 
-	a:hover{
-		text-decoration:none;
-	}
+  a, a:visited {
+    outline:none;
+    color:#389dc1;
+  }
 
-	section, footer, header, aside, nav{
-		display: block;
-	}
+  a:hover{
+    text-decoration:none;
+  }
 
-	/*-------------------------
-		The menu
-	--------------------------*/
+  section, footer, header, aside, nav{
+    display: block;
+  }
 
-	nav{
-		display:block;
-		margin:12px;
-		background-color:#137363;
-		box-shadow:0 1px 1px #ccc;
-		border-radius:0px;
-	}
+  /*-------------------------
+    The menu
+  --------------------------*/
 
-	nav a{
-		display:block;
-		padding: 18px 30px;
-		color:#fff !important;
-		font-weight:bold;
-		font-size:16px;
-		text-decoration:none !important;
-		line-height:1;
-		text-transform: uppercase;
-		background-color:transparent;
+  nav{
+    display:block;
+    margin:12px;
+    background-color:#137363;
+    box-shadow:0 1px 1px #ccc;
+    border-radius:0px;
+  }
 
-		-webkit-transition:background-color 0.25s;
-		-moz-transition:background-color 0.25s;
-		transition:background-color 0.25s;
-	}
+  nav a{
+    display:block;
+    padding: 18px 30px;
+    color:#fff !important;
+    font-weight:bold;
+    font-size:16px;
+    text-decoration:none !important;
+    line-height:1;
+    text-transform: uppercase;
+    background-color:transparent;
 
-	nav a:first-child{
-		border-radius:0px 0 0 0px;
-	}
+    -webkit-transition:background-color 0.25s;
+    -moz-transition:background-color 0.25s;
+    transition:background-color 0.25s;
+  }
 
-	nav a:last-child{
-		border-radius:0 0px 0px 0;
-	}
+  nav a:first-child{
+    border-radius:0px 0 0 0px;
+  }
 
-	nav.home .home,
-	nav.office .office,
-	nav.school .school,
-	nav.other .other{
-		background-color:#061A17;
-	}
+  nav a:last-child{
+    border-radius:0 0px 0px 0;
+  }
 
-	p{
-		font-size:22px;
-		font-weight:bold;
-		color:#fff;
-	}
+  nav.home .home,
+  nav.office .office,
+  nav.school .school,
+  nav.other .other{
+    background-color:#061A17;
+  }
 
-	p b{
-		color:#ffffff;
-		display:inline-block;
-		padding:5px 10px;
-		background-color:#c4d7e0;
-		border-radius:2px;
-		text-transform:uppercase;
-		font-size:18px;
-	}
+  p{
+    font-size:22px;
+    font-weight:bold;
+    color:#fff;
+  }
+
+  p b{
+    color:#ffffff;
+    display:inline-block;
+    padding:5px 10px;
+    background-color:#c4d7e0;
+    border-radius:2px;
+    text-transform:uppercase;
+    font-size:18px;
+  }
 }
+
+
 </style>
 </head>
-<body>
+<body >
 
 <div id="main">
+   <header>
+      <button class="hamburger">&#9776;</button> 
+
+      <button class="cross">&#735;</button>
+    </header>
+
+
+<div class="menu">
+  <nav v-bind:class="active" v-on:click.prevent>
+
+    <!-- When a link in the menu is clicked, we call the makeActive method, 
+        defined in the JavaScript Vue instance. It will change the value of "active". -->
+        <ul>     
+
+              <a href="#" v-for="category in categories" v-on:click="makeActive(category.name, category.id)">{{ category.name }}</a>
+              <a href="#" class="addCategory" v-on:click="makeActiveAdd('add')">+ Add</a>
+               <a class="addCategory">Delete</a>
+              <select v-if="categories[active_ID]" v-model="Delete" v-on:change="deleteSelectedCategory()">
+                <option v-for="category in categories" v-bind:value="category.name">
+                 {{ category.name }}
+                </options>
+              </select>
+             
+        </ul>
+  </nav>
+</div>
+
+
 
 <div class="header">
 
- <br><br><h1 style="font-family: fantasy;">Task Manager</h1>
+ <br><br><h1>Task Manager</h1>
 </div>
 
-<nav v-bind:class="active" v-on:click.prevent>
+<template v-if="active === 'add'">
+  <input type="text" class="placeholder" placeholder="add Category" v-model="addedtask" v-on:keyup.enter="addCategory(addedtask)">
+</template>
 
-		<!-- When a link in the menu is clicked, we call the makeActive method, 
-        defined in the JavaScript Vue instance. It will change the value of "active". -->
+<p>{{ addedtask }}</p>
 
-		<a href="#" class="home" v-on:click="makeActive('home')">Home</a>
-		<a href="#" class="office" v-on:click="makeActive('office')">Office</a>
-		<a href="#" class="school" v-on:click="makeActive('school')">School</a>
-		<a href="#" class="other" v-on:click="makeActive('other')">Other</a>
-	</nav>
-
- 	<!-- The mustache expression will be replaced with the value of "active".
- 		 It will automatically update to reflect any changes. -->
-
-	<!-- <p>You chose <b>{{ active }}</b></p> -->
-
-
-
-
-
-  <!-- <img v-attr:src="image_link"> -->
-
-
-<!-- <div class="container"> -->
-
-<section class="panel">
-<br><br>
-<input type="text" class="placeholder" placeholder="Task" autofocus class="text-input" v-model="newTask" v-on:keyup.enter="addTask(active)">
+  <section class="panel">
+    <input type="text" class="placeholder" placeholder="Task" autofocus class="text-input" v-model="newTask" :hidden="active==='add'" v-on:keyup.enter="addTask(active_ID)">
 </section>
 
 
-  <ul>
-    <br><li :class="{ 'done123' : task.done }" v-for="task in taskList[active]" @click="task.done = !task.done">
+  <ul  v-if="categories[active_ID]"> 
+    <br><li :class="{ 'done123' : task.done }" v-for="task in categories[active_ID].tasks" @click="task.done = !task.done">
       {{ task.text }}
     </li>
   </ul>
+<div v-else>This category has been deleted.</div>
 
-<!-- </div> -->
+
+<!-- <div v-for="object in categories">
+      {{ object.name }} <br />
+      
+</div> -->
+
+
 
 
 
@@ -262,53 +388,136 @@
 
 
 <script>
-	// Creating a new Vue instance and pass in an options object.
+  // Creating a new Vue instance and pass in an options object.
 var demo = new Vue({
-	
-	// A DOM element to mount our view model.
-	el: '#main',
+  
+  // A DOM element to mount our view model.
+  el: '#main',
 
         // This is the model.
-	// Define properties and give them initial values.
-	data: {
-		active: 'home',
-		newTask: "",
-      	taskList: {
-	      	home: [], 
-	      	school: [], 
-	      	office: [], 
-	      	other:[]}
+  // Define properties and give them initial values.
+  data: {
+    active: 'home',
+    newTask: "",
+    addedtask: "",
+    active_ID: 0,
+    last_ID: 1,
+    Delete: "",
+    taskList: {
+          home: [], 
+          school: [], 
+          office: [], 
+          other:[]
+        },
+
+    categories:[
+      {id: 0, name: "home", tasks: []},
+      {id: 1, name: "school", tasks: []}
+     ]
+
+    
+  },
+
+  // Functions we will be using.
+  methods: {
+    makeActive: function(item, id){
+      // When a model is changed, the view will be automatically updated.
+      this.active = item;
+      this.active_ID = id; 
+      // this.last_ID= id;   
+      console.log(this.active_ID)
+
       
-	},
+    },
 
-	// Functions we will be using.
-	methods: {
-		makeActive: function(item){
-			// When a model is changed, the view will be automatically updated.
-			this.active = item;
-		},
+    makeActiveAdd: function(item){
+      // When a model is changed, the view will be automatically updated.
+      this.active = item;
 
-		addTask: function(active) {
+         
+      
+    },
+
+    addTask: function(active_ID) {
       //trim() is used to remove whitespace from both ends of a string
       var task = this.newTask.trim();
+
       //if task is not an empty string
       if (task) {
-        //Push an object containing the task to the taskList array
+                this.categories[active_ID].tasks.push({
+                text: task,
+                done: false
+           });  
 
-    	this.taskList[active].push({
-	          text: task,
-	          done: false
-	     });
+          //Reset newTask to an empty string so the input field is cleared
+          this.newTask = "";
+
+      }
+    },
+
+    addCategory: function(addedtask){
+       
+       if(addedtask){
+               
+         this.categories.push({ 
+          id: this.categories.length,
+          name: addedtask,
+          tasks: []
+         });
+         this.active=addedtask;
+         this.addedtask="";
+         this.active_ID=this.last_ID=this.categories.length - 1;
+         
+        }
+      },
 
 
+    deleteSelectedCategory: function(){      
+      var index = -1; var store = -1;
+      for(var i=0; i<this.categories.length; i++){
+        if(this.categories[i].name==this.Delete)
+          index= i
+        store=i
 
-        //Reset newTask to an empty string so the input field is cleared
-        this.newTask = "";
-      
-	  }
+        }
+      if (index > -1) {
+        this.categories.splice(index, 1);
+      }
+      this.active_ID=this.last_ID=this.categories.length-1;
+    },
+
+    alert123: function(Delete){
+      alert('Are you sure you want to delete ' + Delete + '?')
     }
-	}
+
+  }
+
+    // alert123: function(Delete){
+    //   alert('Deleted')
+    // },
+
+    
+
 });
+
+
+ $( ".cross" ).hide();
+        $( ".menu" ).hide();
+        $( ".hamburger" ).click(function() {
+        $( ".menu" ).slideToggle( "slow", function() {
+        $( ".hamburger" ).hide();
+        $( ".cross" ).show();
+        });
+        });
+
+        $( ".cross" ).click(function() {
+        $( ".menu" ).slideToggle( "slow", function() {
+        $( ".cross" ).hide();
+        $( ".hamburger" ).show();
+        });
+        });
+
+
 </script>
 
 </body>
